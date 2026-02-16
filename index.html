@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veda</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#0D1B1E',
+          },
+          letterSpacing: {
+            'tightest': '-.06em',
+          },
+          animation: {
+            'scan-line': 'scan 3s ease-in-out infinite',
+            'float': 'float 4s ease-in-out infinite',
+            'flow-sand': 'flow 2s linear infinite',
+            'slide-trails': 'slide 2s linear infinite',
+            'text-scroll': 'text-scroll 10s linear infinite',
+            'scan-slow': 'scan-v 8s linear infinite',
+          },
+          keyframes: {
+            'scan-v': {
+              '0%': { top: '-100%' },
+              '100%': { top: '100%' }
+            },
+            scan: {
+              '0%, 100%': { transform: 'translateX(-40px)' },
+              '50%': { transform: 'translateX(40px)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0) rotate(45deg)' },
+              '50%': { transform: 'translateY(-10px) rotate(50deg)' },
+            },
+            flow: {
+              '0%': { backgroundPosition: '0 0' },
+              '100%': { backgroundPosition: '0 20px' },
+            },
+            slide: {
+              '0%': { transform: 'translateX(-20px)', opacity: '0' },
+              '50%': { opacity: '1' },
+              '100%': { transform: 'translateX(20px)', opacity: '0' },
+            },
+            'text-scroll': {
+              '0%': { transform: 'translateY(0)' },
+              '100%': { transform: 'translateY(-50%)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #ffffff;
+    }
+
+    /* Custom scrollbar to keep it clean */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    @keyframes scan {
+
+      0%,
+      100% {
+        left: 40%;
+      }
+
+      50% {
+        left: 60%;
+      }
+    }
+
+    .animate-scan {
+      animation: scan 4s ease-in-out infinite;
+    }
+
+    @keyframes float-shard {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(45deg);
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(48deg);
+      }
+    }
+
+    .animate-float-shard {
+      animation: float-shard 3s ease-in-out infinite;
+    }
+
+    @keyframes flow-stream {
+      0% {
+        transform: scaleY(0.8);
+        opacity: 0.5;
+      }
+
+      50% {
+        transform: scaleY(1.1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scaleY(0.8);
+        opacity: 0.5;
+      }
+    }
+
+    .animate-flow-stream {
+      animation: flow-stream 1.5s ease-in-out infinite;
+    }
+  </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "recharts": "https://esm.sh/recharts@^3.7.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.41.0"
+  }
+}
+</script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+
+<body class="bg-[#ffffff] text-[#0D1B1E]">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>

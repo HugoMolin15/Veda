@@ -1,0 +1,32 @@
+{
+  "name": "sentinel-veda-|-neural-brand-defense",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@google/genai": "^1.41.0",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@types/three": "^0.182.0",
+    "class-variance-authority": "^0.7.1",
+    "framer-motion": "^12.34.0",
+    "gsap": "^3.14.2",
+    "lucide-react": "^0.564.0",
+    "motion": "^12.34.0",
+    "ogl": "^1.0.11",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "recharts": "^3.7.0",
+    "three": "^0.182.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}
