@@ -28,7 +28,7 @@ const Stats: React.FC = () => {
       ].map((stat, idx) => (
         <div
           key={idx}
-          className="bg-[#FBFBFB] rounded-[8px] p-8 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_4px_6px_-2px_rgba(0,0,0,0.05)] flex flex-col justify-between min-h-[180px] md:min-h-[300px]"
+          className="bg-white rounded-[8px] p-8 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_4px_6px_-2px_rgba(0,0,0,0.05)] flex flex-col justify-between min-h-[180px] md:min-h-[300px]"
         >
           <span className="text-[14px] font-medium text-[#12262B] uppercase tracking-widest leading-tight">
             {stat.label}
