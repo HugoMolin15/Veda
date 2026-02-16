@@ -24,17 +24,27 @@ export function Pointer({
     const y = useSpring(mouseY, springConfig);
 
     const [isActive, setIsActive] = useState<boolean>(false)
+    const [isMobile, setIsMobile] = useState<boolean>(false)
 
     useEffect(() => {
         if (typeof window === "undefined") return;
 
-        // Force hide standard cursor globally
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 1024 || 'ontouchstart' in window);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
+        // Force hide standard cursor globally only if not mobile
         const styleTag = document.createElement("style");
-        styleTag.innerHTML = `
-            * { cursor: none !important; }
-            a, button, [role="button"], .cursor-pointer { cursor: none !important; }
-        `;
-        document.head.appendChild(styleTag);
+        if (window.innerWidth >= 1024) {
+            styleTag.innerHTML = `
+                * { cursor: none !important; }
+                a, button, [role="button"], .cursor-pointer { cursor: none !important; }
+            `;
+            document.head.appendChild(styleTag);
+        }
 
         const handleMouseMove = (e: MouseEvent) => {
             mouseX.set(e.clientX)
@@ -45,17 +55,22 @@ export function Pointer({
         const handleMouseLeave = () => setIsActive(false)
         const handleMouseEnter = () => setIsActive(true)
 
-        window.addEventListener("mousemove", handleMouseMove, { passive: true })
-        window.addEventListener("mouseleave", handleMouseLeave)
-        window.addEventListener("mouseenter", handleMouseEnter)
+        if (window.innerWidth >= 1024) {
+            window.addEventListener("mousemove", handleMouseMove, { passive: true })
+            window.addEventListener("mouseleave", handleMouseLeave)
+            window.addEventListener("mouseenter", handleMouseEnter)
+        }
 
         return () => {
-            document.head.removeChild(styleTag);
+            if (styleTag.parentNode) document.head.removeChild(styleTag);
+            window.removeEventListener('resize', checkMobile);
             window.removeEventListener("mousemove", handleMouseMove)
             window.removeEventListener("mouseleave", handleMouseLeave)
             window.removeEventListener("mouseenter", handleMouseEnter)
         }
     }, [isActive])
+
+    if (isMobile) return null;
 
     return (
         <AnimatePresence>
