@@ -15,9 +15,9 @@ const Hero: React.FC = () => {
         <p className="text-[16px] text-gray-500 mb-10 leading-relaxed font-medium">
           Sentinel Veda deploys a proprietary neural layer to detect deepfakes, unauthorized brand clones, and AI-driven misinformation before they reach your audience.
         </p>
-        <div className="flex flex-wrap gap-4">
-          <button className="bg-[#0D1B1E] hover:opacity-90 text-white px-10 py-4 rounded-full text-[14px] font-bold transition-all shadow-sm">Initialize Defense</button>
-          <button className="bg-transparent border border-gray-300 hover:border-[#0D1B1E] text-[#0D1B1E] px-10 py-4 rounded-full text-[14px] font-bold transition-all">View Threat Map</button>
+        <div className="flex gap-3 sm:gap-4 w-full">
+          <button className="flex-1 sm:flex-none bg-[#0D1B1E] hover:opacity-90 text-white px-4 sm:px-10 py-4 rounded-full text-[13px] sm:text-[14px] font-bold transition-all shadow-sm truncate">Initialize Defense</button>
+          <button className="flex-1 sm:flex-none bg-transparent border border-gray-300 hover:border-[#0D1B1E] text-[#0D1B1E] px-4 sm:px-10 py-4 rounded-full text-[13px] sm:text-[14px] font-bold transition-all truncate">View Threat Map</button>
         </div>
       </div>
 
