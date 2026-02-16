@@ -1,5 +1,4 @@
-
-import React, { useEffect } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
@@ -12,60 +11,52 @@ import Blog from './components/Blog';
 import Footer from './components/Footer';
 import NeuralCore from './components/NeuralCore';
 import { Pointer } from './components/ui/pointer';
+import { motion } from 'framer-motion';
 
 const SectionWrapper: React.FC<{
   children: React.ReactNode;
   className?: string;
   bgColor?: string;
-  noBorders?: boolean
-}> = ({ children, className = "", bgColor = "bg-white", noBorders = false }) => (
-  <div className={`${!noBorders ? 'md:border-b border-[#E8E9EB]' : ''} w-full ${bgColor} ${className}`}>
+  noBorders?: boolean;
+  delay?: number;
+}> = ({ children, className = "", bgColor = "bg-white", noBorders = false, delay = 0 }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-100px" }}
+    transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1], delay }}
+    className={`${!noBorders ? 'md:border-b border-[#E8E9EB]' : ''} w-full ${bgColor} ${className}`}
+  >
     <div className={`max-w-7xl mx-auto ${!noBorders ? 'md:border-l md:border-r md:border-dashed border-[#E8E9EB]' : ''} px-4 sm:px-6 lg:px-8 py-12 md:py-32`}>
       {children}
     </div>
-  </div>
+  </motion.div>
 );
 
 const App: React.FC = () => {
-  useEffect(() => {
-    const observerOptions = { threshold: 0.1 };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('opacity-100', 'translate-y-0');
-          entry.target.classList.remove('opacity-0', 'translate-y-10');
-        }
-      });
-    }, observerOptions);
-
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    animatedElements.forEach(el => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <div className="min-h-screen selection:bg-[#0D1B1E] selection:text-white bg-white">
       <Pointer />
       <Navbar />
 
       <main>
-        <SectionWrapper className="animate-on-scroll transition-all duration-1000">
+        <SectionWrapper>
           <Hero />
         </SectionWrapper>
 
-        <SectionWrapper className="animate-on-scroll transition-all duration-1000 delay-100">
+        <SectionWrapper delay={0.1}>
           <Stats />
         </SectionWrapper>
 
-        <SectionWrapper className="animate-on-scroll transition-all duration-1000 delay-200">
+        <SectionWrapper delay={0.1}>
           <Narrative />
         </SectionWrapper>
 
-        <SectionWrapper className="animate-on-scroll transition-all duration-1000 delay-300">
+        <SectionWrapper delay={0.1}>
           <Features />
         </SectionWrapper>
 
-        <SectionWrapper className="animate-on-scroll transition-all duration-1000">
+        <SectionWrapper>
           <div>
             <div className="flex flex-col md:flex-row justify-between items-start mb-8 md:mb-20 gap-4 md:gap-8">
               <div className="max-w-lg">
@@ -83,23 +74,22 @@ const App: React.FC = () => {
           </div>
         </SectionWrapper>
 
-        <SectionWrapper className="animate-on-scroll transition-all duration-1000">
+        <SectionWrapper>
           <Comparison />
         </SectionWrapper>
 
         <SectionWrapper
-          className="animate-on-scroll transition-all duration-1000"
           bgColor="bg-[#FFF9EB]"
           noBorders={true}
         >
           <Analytics />
         </SectionWrapper>
 
-        <SectionWrapper className="animate-on-scroll transition-all duration-1000">
+        <SectionWrapper>
           <PremiumBrands />
         </SectionWrapper>
 
-        <SectionWrapper className="animate-on-scroll transition-all duration-1000">
+        <SectionWrapper>
           <Blog />
         </SectionWrapper>
       </main>
